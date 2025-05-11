@@ -6,8 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ButtonNavigationBarWidget extends StatefulWidget {
-  final int initialIndex;
-  const ButtonNavigationBarWidget({super.key, this.initialIndex = 0});
+  const ButtonNavigationBarWidget({super.key});
   @override
   State<ButtonNavigationBarWidget> createState() => _ButtonNavigationBarState();
 }
@@ -18,7 +17,7 @@ class _ButtonNavigationBarState extends State<ButtonNavigationBarWidget> {
   @override
   void initState() {
     super.initState();
-    page = widget.initialIndex;
+
     // context.read<ProcessingCubit>().fetchProcessing();
   }
 
@@ -28,18 +27,17 @@ class _ButtonNavigationBarState extends State<ButtonNavigationBarWidget> {
       body: pages[page],
       bottomNavigationBar: ConvexAppBar(
         backgroundColor: Color(0xFFF5FAFF),
-        cornerRadius: 5,
-        style: TabStyle.fixedCircle,
+        style: TabStyle.flip,
         color: Colors.deepPurple,
         curveSize: 25,
         top: -25,
         initialActiveIndex: page,
-        height: 60.h,
+
         items: [
           TabItem(
             icon: Padding(
               padding: EdgeInsets.only(bottom: 20.h),
-              child: Icon(Icons.edit_document, color: Colors.white38),
+              child: Icon(Icons.edit_document, color: Colors.black38),
             ),
             activeIcon: Icon(Icons.edit_document, color: Colors.deepPurple),
             title: '',
@@ -47,7 +45,7 @@ class _ButtonNavigationBarState extends State<ButtonNavigationBarWidget> {
           TabItem(
             icon: Padding(
               padding: EdgeInsets.only(bottom: 20.h),
-              child: Icon(Icons.account_balance, color: Colors.white38),
+              child: Icon(Icons.account_balance, color: Colors.black38),
             ),
             activeIcon: Icon(Icons.account_balance, color: Colors.deepPurple),
             title: '',
@@ -56,7 +54,7 @@ class _ButtonNavigationBarState extends State<ButtonNavigationBarWidget> {
           TabItem(
             icon: Padding(
               padding: EdgeInsets.only(bottom: 20.h),
-              child: Icon(Icons.settings, color: Colors.white38),
+              child: Icon(Icons.settings, color: Colors.black38),
             ),
             activeIcon: Icon(Icons.settings, color: Colors.deepPurple),
             title: '',

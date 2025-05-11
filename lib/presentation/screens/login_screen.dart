@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../widgets/button_navigation_bar_widget.dart';
 import '../widgets/login_input_widget.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -37,7 +38,7 @@ class _LoginScreenState extends State<LoginScreen> {
               Container(
                 padding: EdgeInsets.only(left: 40.w, right: 40.w, top: 50.h),
                 child: Image.asset(
-                  'assets/images/login_image.png',
+                  "assets/images/login_image.png",
                   width: 290.w,
                   height: 225.h,
                 ),
@@ -139,6 +140,17 @@ class _LoginScreenState extends State<LoginScreen> {
                       ],
                     ),
                     SizedBox(height: 45.h),
+                    OutlinedButton(
+                        style: OutlinedButton.styleFrom(
+                          padding: EdgeInsets.symmetric(horizontal: 130.w, vertical: 18.h),
+                          backgroundColor: Color(0xFF572DA6),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15.sp)
+                          )
+                        ),
+                        onPressed: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=> ButtonNavigationBarWidget()));
+                        }, child: Text('Kirish',style: TextStyle(color:Colors.white,fontSize: 16.sp),))
                     // Center(
                     //   child: Container(
                     //     height: 53.h,

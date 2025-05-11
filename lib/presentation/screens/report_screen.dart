@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class ReportScreen extends StatelessWidget {
@@ -5,6 +6,14 @@ class ReportScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold( 
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text('Report Screen'),
+      ),
+      body: Center(
+        child: Text('Report Screen'),
+      ),
+    );
   }
 }

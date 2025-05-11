@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "com.example.davr_smart_operator"
-    compileSdk = 34 // yoki siz foydalanayotgan versiya
+    compileSdk = 35
     ndkVersion = "27.0.12077973"
 
     compileOptions {

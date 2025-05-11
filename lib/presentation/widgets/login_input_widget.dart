@@ -70,7 +70,7 @@ class LoginInputWidget extends StatelessWidget {
           ), // shu yer bilan balandligini sozlaysiz
           child: suffix,
         ),
-        fillColor: Colors.grey,
+        fillColor: Colors.transparent,
         hintText: hintText,
         hintStyle: TextStyle(
           fontSize: 16.sp,
