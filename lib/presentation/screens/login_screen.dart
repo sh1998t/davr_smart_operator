@@ -75,7 +75,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         fontSize: 14.sp,
                         fontWeight: FontWeight.w400,
                         color: Colors.black,
-                      ),
+                      )
                     ),
                     SizedBox(height: 30.h),
                     LoginInputWidget(
