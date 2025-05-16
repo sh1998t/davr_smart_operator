@@ -1,9 +1,10 @@
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:davr_smart_operator/presentation/screens/deposit_create_screen.dart';
 import 'package:davr_smart_operator/presentation/screens/profile_screen.dart';
-import 'package:davr_smart_operator/presentation/screens/report_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../screens/history_screen.dart';
 
 class ButtonNavigationBarWidget extends StatefulWidget {
   const ButtonNavigationBarWidget({super.key});
@@ -13,7 +14,7 @@ class ButtonNavigationBarWidget extends StatefulWidget {
 
 class _ButtonNavigationBarState extends State<ButtonNavigationBarWidget> {
   var page = 0;
-  final pages = [DepositCreateScreen(), ReportScreen(), ProfileScreen()];
+  final pages = [DepositCreateScreen(), HistoryScreen(), ProfileScreen()];
   @override
   void initState() {
     super.initState();
@@ -45,9 +46,9 @@ class _ButtonNavigationBarState extends State<ButtonNavigationBarWidget> {
           TabItem(
             icon: Padding(
               padding: EdgeInsets.only(bottom: 20.h),
-              child: Icon(Icons.account_balance, color: Colors.black38),
+              child: Icon(Icons.history, color: Colors.black38),
             ),
-            activeIcon: Icon(Icons.account_balance, color: Colors.deepPurple),
+            activeIcon: Icon(Icons.history, color: Colors.deepPurple),
             title: '',
           ),
 

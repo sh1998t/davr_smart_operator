@@ -3,14 +3,12 @@ import 'package:davr_smart_operator/presentation/widgets/card_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
+import '../widgets/deposit_dialog_widgwt.dart';
 import '../widgets/show_button_sheet_widget.dart';
 List<Map<String, dynamic>> list =[
-  {'name':'Shavkat','date':'12,03.1998','summa':'500', },
-  {'name':'Shavkat','date':'12,03.1998','summa':'500', },
-  {'name':'Shavkat','date':'12,03.1998','summa':'500', },
-  {'name':'Shavkat','date':'12,03.1998','summa':'500', },
-  {'name':'Shavkat','date':'12,03.1998','summa':'500', },
+
   {'name':'Shavkat','date':'12,03.1998','summa':'500', },
   {'name':'Shavkat','date':'12,03.1998','summa':'500', },
   {'name':'Shavkat','date':'12,03.1998','summa':'500', },
@@ -27,24 +25,26 @@ class DepositCreateScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: ApkColor.backgroundColor,
-        centerTitle: true,
         automaticallyImplyLeading: false,
-        title: Text(' Deposit Screen'),
+        centerTitle: false,
+        title: Padding(
+          padding:  EdgeInsets.only(left: 15.w),
+          child: Text('Deposit Screen'),
+        ),
         actions: [
-          Padding(padding: EdgeInsets.only(right: 16.w),
+          Padding(padding: EdgeInsets.only(right: 24.w),
             child: IconButton(
                 onPressed: (){
-                 showDialog(context: context, builder: (context){
-                   return Dialog(
-                     alignment: Alignment.topCenter,
-                     child: Container(
-                       height: 200.h,
-                       width: 120.w,
-                       color: Colors.red,
-                     ),
-                   );
+                 showDialog(
+                     context: context,
+                     builder: (context){
+                   return Container(
+                       margin: EdgeInsets.symmetric(horizontal: 25.sp),
+                       child: DepositDialogWidget());
                  });
-          }, icon: Icon(Icons.add,size: 28.r,)),),
+          }, icon: SvgPicture.asset('assets/images/add_icon.svg', width: 30.r,height: 30.r,fit: BoxFit.contain,)
+            ),
+          ),
 
         ],
       ),
@@ -60,10 +60,8 @@ class DepositCreateScreen extends StatelessWidget {
                    context: context,
                       isScrollControlled: true,
                       backgroundColor: Colors.transparent,
-
-                      builder: (BuildContext context){
-                 return ShowButtonSheetWidget();
-               });
+                    builder: (context) => const ShowButtonSheetWidget(),
+               );
                 },
                 name: element['name'],
                 date: element['date'],
