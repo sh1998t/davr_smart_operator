@@ -66,7 +66,7 @@ class _ReportScreenState extends State<ReportScreen> {
                 itemBuilder: (context, index) {
                   final item = list[index];
                   return Container(
-                     color: index.isEven ? Colors.grey[200] : Colors.white,
+                     color: index.isEven ? ApkColor.dropDownColor : ApkColor.white,
                     padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 8.w),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,

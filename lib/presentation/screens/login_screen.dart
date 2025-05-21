@@ -1,6 +1,11 @@
+import 'package:cherry_toast/cherry_toast.dart';
+import 'package:cherry_toast/resources/arrays.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 
+import '../../core/auth_util.dart';
+import '../../data/network/auth_api.dart';
 import '../widgets/button_navigation_bar_widget.dart';
 import '../widgets/login_input_widget.dart';
 
@@ -38,7 +43,7 @@ class _LoginScreenState extends State<LoginScreen> {
               Container(
                 padding: EdgeInsets.only(left: 40.w, right: 40.w, top: 50.h),
                 child: Image.asset(
-                  "assets/images/login_image.png",
+                  "assets/images/png/login_image.png",
                   width: 290.w,
                   height: 225.h,
                 ),
@@ -103,6 +108,99 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     SizedBox(height: 15.h),
+                    Center(
+                      child: Container(
+                        height: 53.h,
+                        width: 305.w,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15.r),
+                        ),
+                        child: OutlinedButton(
+                          style: OutlinedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                              borderRadius:
+                              BorderRadius.all(Radius.circular(15.r)),
+                            ),
+                            backgroundColor: Color(0xFF572DA6),
+                            side: BorderSide.none,
+                          ),
+                          onPressed: isLoading
+                              ? null
+                              : () async {
+                            setState(() {
+                              isLoading = true;
+                            });
+                            try {
+                              final token =
+                              await AuthApiRequest().request(
+                                loginController.text,
+                                passwordController.text,
+                              );
+
+                              await AuthUtil.setToken(token);
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                  const ButtonNavigationBarWidget(),
+                                ),
+                              );
+                            } catch (error) {
+                              print(error);
+                              setState(() {
+                                isLoading = false;
+                              });
+                              String errorMessage = error
+                                  .toString()
+                                  .replaceAll("Exception: ", "");
+                              CherryToast.error(
+                                animationDuration:
+                                Duration(milliseconds: 300),
+                                inheritThemeColors: true,
+                                animationType: AnimationType.fromTop,
+                                title: Text('Xatolik!'),
+                                description: Text(errorMessage),
+                              ).show(context);
+                            } finally {
+                              if (mounted) {
+                                setState(() {
+                                  isLoading = false;
+                                });
+                              }
+                            }
+                          },
+                          child: isLoading
+                              ? CircularProgressIndicator(
+                            padding: EdgeInsets.all(6.r),
+                            color: Colors.white,
+                            strokeWidth: 3,
+                          )
+                              : Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(
+                                "Kirish",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 16.sp,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              SizedBox(width: 12.w),
+                              SvgPicture.asset(
+                                'assets/images/svg/arrow.svg',
+                                height: 16.h,
+                                width: 16.w,
+                                fit: BoxFit.cover,
+                                color: Colors.white,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 15.h),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       crossAxisAlignment: CrossAxisAlignment.end,
@@ -139,109 +237,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         SizedBox(width: 10.w),
                       ],
                     ),
-                    SizedBox(height: 45.h),
-                    OutlinedButton(
-                        style: OutlinedButton.styleFrom(
-                          padding: EdgeInsets.symmetric(horizontal: 130.w, vertical: 18.h),
-                          backgroundColor: Color(0xFF572DA6),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15.sp)
-                          )
-                        ),
-                        onPressed: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=> ButtonNavigationBarWidget()));
-                        }, child: Text('Kirish',style: TextStyle(color:Colors.white,fontSize: 16.sp),))
-                    // Center(
-                    //   child: Container(
-                    //     height: 53.h,
-                    //     width: 305.w,
-                    //     decoration: BoxDecoration(
-                    //       borderRadius: BorderRadius.circular(15.r),
-                    //     ),
-                    //     child: OutlinedButton(
-                    //       style: OutlinedButton.styleFrom(
-                    //         shape: RoundedRectangleBorder(
-                    //           borderRadius:
-                    //           BorderRadius.all(Radius.circular(15.r)),
-                    //         ),
-                    //         backgroundColor: Color(0xFF572DA6),
-                    //         side: BorderSide.none,
-                    //       ),
-                    //       onPressed: isLoading
-                    //           ? null
-                    //           : () async {
-                    //         setState(() {
-                    //           isLoading = true;
-                    //         });
-                    //         try {
-                    //           final token =
-                    //           await AuthApiRequest().request(
-                    //             loginController.text,
-                    //             passwordController.text,
-                    //           );
-                    //
-                    //           await AuthUtil.setToken(token);
-                    //           Navigator.pushReplacement(
-                    //             context,
-                    //             MaterialPageRoute(
-                    //               builder: (context) =>
-                    //               const ButtonNavigationBarWidget(),
-                    //             ),
-                    //           );
-                    //         } catch (error) {
-                    //           setState(() {
-                    //             isLoading = false;
-                    //           });
-                    //           String errorMessage = error
-                    //               .toString()
-                    //               .replaceAll("Exception: ", "");
-                    //           CherryToast.error(
-                    //             animationDuration:
-                    //             Duration(milliseconds: 300),
-                    //             inheritThemeColors: true,
-                    //             animationType: AnimationType.fromTop,
-                    //             title: Text('Xatolik!'),
-                    //             description: Text(errorMessage),
-                    //           ).show(context);
-                    //         } finally {
-                    //           if (mounted) {
-                    //             setState(() {
-                    //               isLoading = false;
-                    //             });
-                    //           }
-                    //         }
-                    //       },
-                    //       child: isLoading
-                    //           ? CircularProgressIndicator(
-                    //         padding: EdgeInsets.all(6.r),
-                    //         color: Colors.white,
-                    //         strokeWidth: 3,
-                    //       )
-                    //           : Row(
-                    //         mainAxisAlignment: MainAxisAlignment.center,
-                    //         crossAxisAlignment: CrossAxisAlignment.center,
-                    //         children: [
-                    //           Text(
-                    //             "Kirish",
-                    //             style: TextStyle(
-                    //               fontWeight: FontWeight.w500,
-                    //               fontSize: 16.sp,
-                    //               color: Colors.white,
-                    //             ),
-                    //           ),
-                    //           SizedBox(width: 12.w),
-                    //           Image.asset(
-                    //             'assets/images/Arrow_logo.png',
-                    //             height: 16.h,
-                    //             width: 16.w,
-                    //             fit: BoxFit.cover,
-                    //             color: Colors.white,
-                    //           ),
-                    //         ],
-                    //       ),
-                    //     ),
-                    //   ),
-                    // ),
+
+
+
                   ],
                 ),
               ),

@@ -11,7 +11,7 @@ class BaseApiRequest {
 
   BaseApiRequest() {
     final options = BaseOptions(
-      baseUrl: ApiConst.base_Url,
+      baseUrl: ApiConst.baseUrl,
       connectTimeout: const Duration(seconds: 45),
       receiveTimeout: const Duration(seconds: 45),
       validateStatus: (status) => true,

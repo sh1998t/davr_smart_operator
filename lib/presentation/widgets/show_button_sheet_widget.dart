@@ -4,7 +4,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ShowButtonSheetWidget extends StatelessWidget {
-  const ShowButtonSheetWidget({super.key});
+  final double? amount;
+  final int status;
+  final String statusName;
+  final String? comment;
+  final String? operatorPhoto;
+  final String bankName;
+  final int bankId;
+  final String? login;
+  final DateTime? createdAt;
+  const ShowButtonSheetWidget({super.key,
+  required this.amount,
+    required this.status,
+    required this.login,
+    required this.bankId,
+     required this.bankName,
+    required this.comment,
+    required this.statusName,
+    this.operatorPhoto,
+     this.createdAt
+
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +64,7 @@ class ShowButtonSheetWidget extends StatelessWidget {
                         fontWeight: FontWeight.w500,
                         color: ApkColor.black
                     ),),
-                    Text('В транзите ',style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                    Text(statusName,style: Theme.of(context).textTheme.bodySmall!.copyWith(
                         fontSize: 18.sp,
                         fontWeight: FontWeight.w600,
                         color: ApkColor.statusTextColor
@@ -61,7 +81,7 @@ class ShowButtonSheetWidget extends StatelessWidget {
                           fontWeight: FontWeight.w500,
                           color: ApkColor.black
                       ),),
-                    Text('100.00 сум',style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                    Text('$amount сум',style: Theme.of(context).textTheme.bodySmall!.copyWith(
                         fontSize: 18.sp,
                         fontWeight: FontWeight.w600,
                         color: ApkColor.summaTextColor
@@ -92,11 +112,11 @@ class ShowButtonSheetWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               spacing: 10.h,
               children: [
-                ColumnWidget(title: 'Логин', text: 'Shavkat'),
-                ColumnWidget(title: 'Сумма', text: '100'),
-                ColumnWidget(title: 'Дате', text: '12.03.1998'),
-                ColumnWidget(title: 'Коммент', text: 'salom'),
-                ColumnWidget(title: 'Банк', text: 'Unversal Bank'),
+                ColumnWidget(title: 'Логин', text: '$login'),
+                ColumnWidget(title: 'Сумма', text: '$amount'),
+                ColumnWidget(title: 'Дате', text: '$createdAt'),
+                ColumnWidget(title: 'Коммент', text: '$comment'),
+                ColumnWidget(title: 'Банк', text: bankName),
                 OutlinedButton(
                     style: OutlinedButton.styleFrom(
                         backgroundColor: ApkColor.deleteBackgroundColor,
@@ -126,7 +146,7 @@ class ShowButtonSheetWidget extends StatelessWidget {
   }
 }
 class ColumnWidget extends StatelessWidget {
-  final String title;
+  final String? title;
   final String text;
   const ColumnWidget({super.key,  required this.title,required this.text,});
 
@@ -137,13 +157,13 @@ class ColumnWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       spacing: 5.h,
       children: [
-        Text(title,style: TextStyle(
+        Text("$title",style: TextStyle(
           fontSize: 18.sp,
           height: 0,
           fontWeight: FontWeight.w500,
           color: ApkColor.labelColor,
         ),),
-        Text(text,style: TextStyle(
+        Text("$text",style: TextStyle(
           fontSize: 18.sp,
           height: 0,
           fontWeight: FontWeight.w500,

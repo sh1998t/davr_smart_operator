@@ -7,8 +7,8 @@ import 'package:flutter_svg/svg.dart';
 
 class CardWidget extends StatefulWidget {
   final String? name;
-  final String? date;
-  final String? summa;
+  final dynamic? date;
+  final double? summa;
   final VoidCallback? onevent;
   const CardWidget(
       {super.key,
@@ -50,7 +50,7 @@ class _CardWidgetState extends State<CardWidget> {
                   ),
                   child: Center(
                     child: SvgPicture.asset(
-                      'assets/images/logo.svg',
+                      'assets/images/svg/logo.svg',
                       width: 16.r,
                       height: 16.r,
                       fit: BoxFit.fill,

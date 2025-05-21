@@ -42,7 +42,15 @@ class HistoryScreen extends StatelessWidget {
                     context: context,
                     isScrollControlled: true,
                     backgroundColor: Colors.transparent,
-                    builder: (context) => const ShowButtonSheetWidget(),
+                    builder: (context) => const ShowButtonSheetWidget(
+                      amount: null,
+                      status: 2,
+                      login: '',
+                      bankId: 2,
+                      bankName: '',
+                      comment: '',
+                      statusName: '',
+                     ),
                   );
                 },
                 name: element['name'],

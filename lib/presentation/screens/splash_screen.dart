@@ -60,7 +60,7 @@ class _SplashScreenState extends State<SplashScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Image.asset(
-              "assets/images/logo_davr.png",
+              "assets/images/png/logo_davr.png",
               width: 140.w,
               height: 220.h,
               fit: BoxFit.contain,

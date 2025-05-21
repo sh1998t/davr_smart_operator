@@ -25,13 +25,13 @@ class _DateTimeToWidgetState extends State<DateTimeToWidget> {
         return Theme(
           data: Theme.of(context).copyWith(
             colorScheme:  ColorScheme.light(
-              primary: ApkColor.backgroundColor, // header background color
-              onPrimary: Colors.black, // header text color
-              onSurface: Colors.black, // body text color
+              primary: ApkColor.backgroundColor,
+              onPrimary: Colors.black,
+              onSurface: Colors.black,
             ),
             textButtonTheme: TextButtonThemeData(
               style: TextButton.styleFrom(
-                foregroundColor: const Color(0xff2964ff), // button text color
+                foregroundColor: const Color(0xff2964ff),
               ),
             ),
           ),
@@ -59,16 +59,21 @@ class _DateTimeToWidgetState extends State<DateTimeToWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return  SizedBox(
+    return  Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8.r),
+      ),
       width: 140.w,
       height: 45.h,
       child: OutlinedButton(
           style: OutlinedButton.styleFrom(
-              backgroundColor: ApkColor.white,
+              backgroundColor: ApkColor.calendarColor,
               side: BorderSide.none,
+
               padding: EdgeInsets.all(0),
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(0),
+
+                  borderRadius: BorderRadius.circular(8.r),
                   side: BorderSide.none
               )
           ),
@@ -78,9 +83,9 @@ class _DateTimeToWidgetState extends State<DateTimeToWidget> {
           Text('08.05.2025',style: TextStyle(
               fontSize: 15.sp,
               fontWeight: FontWeight.w400,
-              color: Color(0xFF484D51)
+              color: ApkColor.white
           ),),
-          SvgPicture.asset('assets/images/calendar.svg',width: 25.r, height: 25.r,fit: BoxFit.fill,)
+          SvgPicture.asset('assets/images/svg/mdi-light_calendar.svg',width: 25.r, height: 25.r,fit: BoxFit.fill,)
         ],
       )),
     );

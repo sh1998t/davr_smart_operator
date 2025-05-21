@@ -4,16 +4,20 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DropDownButtonCarWidget extends StatefulWidget {
   final List<Map<String, dynamic>> list;
+  final ValueChanged? onChanged;
 final String title;
-  const DropDownButtonCarWidget({super.key, required this.list, required this.title});
+  final Map<String , dynamic>? selectedCarId;
+   DropDownButtonCarWidget({super.key,
+    required this.list,
+    required this.title,
+    this.selectedCarId,
+    this.onChanged,});
 
   @override
   State<DropDownButtonCarWidget> createState() => _DropDownButtonCarWidgetState();
 }
 
 class _DropDownButtonCarWidgetState extends State<DropDownButtonCarWidget> {
-  Map<String, dynamic>? _selectedCar;
-
   @override
   void initState() {
     super.initState();
@@ -31,7 +35,7 @@ class _DropDownButtonCarWidgetState extends State<DropDownButtonCarWidget> {
         ),),
         SizedBox(height: 5.h,),
         Container(
-          height: 45.sp,
+          height: 40.sp,
           padding: EdgeInsets.symmetric(horizontal: 12.w,vertical: 0.h),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12.r),
@@ -42,16 +46,13 @@ class _DropDownButtonCarWidgetState extends State<DropDownButtonCarWidget> {
             child: DropdownButton<Map<String, dynamic>>(
               isExpanded: true,
               icon: Icon(Icons.keyboard_arrow_down_rounded, size: 24.sp),
-              value: _selectedCar,
+              value: widget.selectedCarId,
               borderRadius: BorderRadius.circular(12.r),
               dropdownColor: ApkColor.white,
               hint: Text(''),
-              onChanged: (value) {
-                setState(() {
-                  _selectedCar = value;
-                });
-              },
+              onChanged: widget.onChanged,
               items: widget.list.map((e) {
+
                 return DropdownMenuItem<Map<String, dynamic>>(
                   value: e,
                   child: Text(

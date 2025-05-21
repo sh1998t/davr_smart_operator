@@ -7,7 +7,7 @@ class ApkColor{
   static  Color  textBlack= Color(0xFF17181A);
   static  Color  statusTextColor= Color(0xFFFFD51A);
   static  Color  summaTextColor= Color(0xFF0AD12C);
-  static  Color  titleColor= Color(0xFF483D51);
+  static  Color  titleColor= Color(0xFF484D51);
   static Color buttonTextColor  = Color(0xFF1849D6);
   static Color buttonColor = Color.fromARGB(51, 24, 73, 214);
   static Color backgroundColor  = Color(0xFFF5FAFF);
@@ -18,5 +18,6 @@ class ApkColor{
   static Color dividerColor =Colors.grey;
   static Color blackColor2 = Color(0xFF484D51);
   static Color blackColor3 = Color(0xFF31507F);
+  static Color calendarColor = Color(0xFF6450F0);
 
 }
